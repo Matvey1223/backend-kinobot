@@ -21,20 +21,15 @@ app.include_router(stream.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Разрешить запросы отовсюду, для тестов
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Разрешаем все HTTP методы
+    allow_methods=["*"],
     allow_headers=["*", "Range"]
 )
 
 if __name__ == "__main__":
-    # Устанавливаем параметры для SSL
-    # ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-    # ssl_context.load_cert_chain(certfile="ssl_cert.pem", keyfile="ssl_key.pem")
-
-    # Запуск на HTTPS с указанным IP и портом
     uvicorn.run(
-        "pythonProject.main:app",
+        "main:app",
         host="192.168.0.106",
         port=8000,
         reload=True,
